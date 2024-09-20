@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Login Page</h1>
+    <form id="login-form">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <button id="login-btn">Login</button><br>
+        <br>
+        <button class="am" type="submit"><a href="folder.html">submit</a></button>
+    </form>
+    <div id="error-message"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1{
+    color: #4CAF50;
+}
+
+form {
+    width: 50%;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}
+
+#error-message {
+    color: red;
+    margin-top: 10px;
+}
+</style>
+
+
+
+<script>
+const form = document.getElementById('login-form');
+const errorMessageDiv = document.getElementById('error-message');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    if (email === '' || password === '') {
+        errorMessageDiv.innerText = 'Please enter both email and password';
+        return;
+    }
+
+    // Here you would typically make an API call to authenticate the user
+    // For demonstration purposes, we'll just log the email and password to the console
+    console.log(`Email: ${email}, Password: ${password}`);
+
+    // If the authentication is successful, you can redirect the user to the next page
+    // For demonstration purposes, we'll just display a success message
+    errorMessageDiv.innerText = 'Login successful!';
+});
+
+</script>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+
+
+<script type="module" src="firebase.js"></script>

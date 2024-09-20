@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Upload</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Student Marks Upload</h1>
+   
+    <form id="marks-form">
+        <label for="course">Course:</label>
+        <input type="text" id="course" name="course"><br><br>
+        <label for="student">Student Roll Number:</label>
+        <input type="text" id="student roll number" name="student roll number"><br><br>
+        <label for="marks">Marks:</label>
+        <input type="number" id="marks" name="marks"><br><br>
+        <label for="totalMarks">Total Marks:</label>
+        <input type="number" id="totalMarks" name="totalMarks"><br><br>
+        <button id="submit-btn">Submit</button><br><br>
+        <button class="am" type="Check"><a href="end.html">Check</a></button>
+    </form>
+    <div id="result"></div>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1{
+    color: #3e8e41;
+}
+
+
+form {
+    width: 50%;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}
+
+#result {
+    margin-top: 20px;
+}
+
+
+
+</style>
+
+
+<script>
+const form = document.getElementById('marks-form');
+const resultDiv = document.getElementById('result');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const course = document.getElementById('course').value;
+    const student = document.getElementById('student roll number').value;
+    const marks = parseInt(document.getElementById('marks').value);
+    const totalMarks = parseInt(document.getElementById('totalMarks').value);
+
+    if (marks > totalMarks) {
+        alert('Marks cannot be greater than total marks');
+        return;
+    }
+
+    const grade = calculateGrade(marks, totalMarks);
+
+    const result = `
+        <h2>Result</h2>
+        <p>Course: ${course}</p>
+        <p>Student: ${student}</p>
+        <p>Marks: ${marks}</p>
+        <p>Total Marks: ${totalMarks}</p>
+        <p>Grade: ${grade}</p>
+    `;
+
+    resultDiv.innerHTML = result;
+});
+
+function calculateGrade(marks, totalMarks) {
+    const percentage = (marks / totalMarks) * 100;
+
+    if (percentage >= 90) {
+        return 'A';
+    } else if (percentage >= 80) {
+        return 'B';
+    } else if (percentage >= 70) {
+        return 'C';
+    } else if (percentage >= 60) {
+        return 'D';
+    } else {
+        return 'F';
+    }
+}
+
+
+
+
+
+</script>
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+
+<script type="module" src="firebase.js"></script>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

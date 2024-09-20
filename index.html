@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration Portal - Add Student</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Add Student</h2> 
+        <button class="am" type="login"><a href="login.html">Login</a></button>
+        <form id="addStudentForm">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required><br>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+
+            <label for="cnic">CNIC:</label>
+            <input type="text" id="cnic" name="cnic" required><br>
+
+            <input type="hidden" name="userType" value="Student">
+            
+            <input type="submit" value="Add Student">
+        </form>
+        <p id="statusMessage"></p>
+    </div>
+
+
+<style>
+    /* Simple styles for the administration portal */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    color: #21c257;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+#statusMessage {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #007bff;
+}
+.am{
+    position: absolute;
+    top: 150px;
+    right: 400px;
+    border-radius: 10px;
+    max-width: 200px;
+    color: #21c257;
+}
+</style>
+
+
+
+
+
+
+<script>
+    // JavaScript to handle form submission and validation
+document.getElementById("addStudentForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Get form values
+    let firstName = document.getElementById("firstName").value;
+    let lastName = document.getElementById("lastName").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let cnic = document.getElementById("cnic").value;
+
+    // Basic validation (you can add more complex validation if needed)
+    if (firstName === "" || lastName === "" || email === "" || password === "" || cnic === "") {
+        document.getElementById("statusMessage").textContent = "Please fill all fields.";
+        document.getElementById("statusMessage").style.color = "red";
+        return;
+    }
+
+    // Simulating data submission (this would usually be an API call)
+    let newStudent = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        cnic: cnic,
+        userType: "Student"
+    };
+
+    console.log("New Student Data:", newStudent);
+    document.getElementById("statusMessage").textContent = "Student added successfully!";
+    document.getElementById("statusMessage").style.color = "green";
+
+    // Clear the form
+    document.getElementById("addStudentForm").reset();
+});
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+
+<script type="module" src="firebase.js"></script>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
